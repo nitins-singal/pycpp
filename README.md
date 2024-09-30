@@ -1,16 +1,17 @@
 # Local Setup
 
+### Install cmake. One time only
+brew install cmake
+
 ### Create the virtual env. I have used 3.12 but one could use 3.10 as well depending on what python you have
 
 virtualenv -p 3.12 ./venv
 source ./venv/bin/activate
 pip install -r requirements.txt
 
-### Install cmake 
-brew install cmake
 
 ###  Generate makefiles etc. This one is for creating Debug build to enable debugging
-rm -rf build
+rm -rf cpp/build
 ###  Create a debug build
 cmake -Scpp -Bcpp/build -D CMAKE_BUILD_TYPE=Debug
 

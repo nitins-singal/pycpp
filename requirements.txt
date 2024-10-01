@@ -1,3 +1,6 @@
 pybind11==2.11.1
 debugpy
 setuptools
+# The following should actually go to test requirements
+pytest
+pytest-cov

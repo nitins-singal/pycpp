@@ -34,5 +34,8 @@ docker run -v ./:/app/src --cap-add=SYS_PTRACE --security-opt seccomp:unconfined
 ### Building the project inside container.
 cd src; ./build_cpp.sh
 
+## Install the Wheel (Editable):
+pip install -e .
+
 ### Running inside container
 python mylyric/script.py

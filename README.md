@@ -19,8 +19,9 @@ cmake -Scpp -Bcpp/build -D CMAKE_BUILD_TYPE=Debug
 cmake --build cpp/build -j
 
 ### Copy the generated shared object file into the python module so that it can be packaged in wheel
-mkdir -p mylyric/lib/
-cp cpp/build/lyric_module.* mylyric/lib/
+### Currently handled in ./build_cpp.sh
+# mkdir -p mylyric/lib/
+# cp cpp/build/lyric_module.* mylyric/lib/
 
 ### In vscode for ddebugging with debugpy use this
 python -Xfrozen_modules=off mylyric/script.py
@@ -29,7 +30,7 @@ python -Xfrozen_modules=off mylyric/script.py
 ### Building Dockerfile 
 docker build -t lyric_py_cpp:1.0 -f Dockerfile .
 ### Running the container
-docker run -v ./:/app/src --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
+docker run -v ./:/app/src  --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
 
 ### Building the project inside container.
 cd src; ./build_cpp.sh

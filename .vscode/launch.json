@@ -15,7 +15,7 @@
             "name": "(gdb) Attach",
             "type": "cppdbg",
             "request": "attach",
-            "program": "/app/src/build/lyric_module.cpython-310-aarch64-linux-gnu.so",
+            "program": "/app/src/mylyric/lib/lyric_module.cpython-310-aarch64-linux-gnu.so",
             "processId": "${command:pickProcess}",
             "MIMode": "gdb",
             "setupCommands": [

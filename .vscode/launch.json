@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+              "host": "localhost",
+              "port": 5678
+            },
+            //"pythonArgs": ["-Xfrozen_modules=off"]
+        },
+        {
+            "name": "(gdb) Attach",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "/app/src/build/lyric_module.cpython-310-aarch64-linux-gnu.so",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true,
+                    "ptrace_scope": 0
+                }
+            ],
+        },
+
+    ]
+}

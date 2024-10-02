@@ -1,0 +1,47 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+// This file is currently not being leveraged since we are attachin to a running container.
+// IMPORTANT: But it has a list of useful extensions, some of which are required to complete the setup
+
+{
+	// See https://aka.ms/vscode-remote/devcontainer.json for format details.
+	"name": "../Dockerfile",
+
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+
+	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+	"dockerFile": "../Dockerfile",
+
+	// The optional 'runArgs' property can be used to specify additional runtime arguments.
+	"runArgs": [
+		// to use A ptrace-based debugger like gdb
+		"--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"
+	],
+
+	"remoteEnv": {
+		//"PATH": "${containerEnv:PATH}:/workspaces/lyric/venv/bin:/workspaces/lyric/build/bin",
+		//"LD_LIBRARY_PATH": "${containerEnv:LD_LIBRARY_PATH}:/workspaces/lyric/venv/lib:/workspaces/lyric/build/lib",
+		//"VIRTUAL_ENV": "/workspaces/lyric/venv",
+		//"PYTHONPATH": "/workspaces/lyric/venv/bin/python3.6",
+
+	},
+
+	// "appPort": [],
+	
+	// Uncomment the next line if you want to add in default container specific settings.json values
+	// "settings":  { "workbench.colorTheme": "Quiet Light" },
+
+	// Add the IDs of any extensions you want installed in the array below.
+	"extensions": [
+		"ms-vscode.cpptools",
+		"ms-vscode.cmake-tools",
+		"eamodio.gitlens",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"streetsidesoftware.code-spell-checker",	// checks spelling and highlights 
+		"anjali.clipboard-history",					// provides a copy&paste history
+		"njpwerner.autodocstring",					// auto generates python doc strings
+		"lextudio.restructuredtext",				// enables syntax highlighting for .rst files
+		"reverbc.vscode-pytest",					// enables auto completion and jump to definition for pytest fixtures
+	]
+}

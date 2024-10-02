@@ -8,10 +8,11 @@ int simple_cpp_function(int a, int b) {
     }
 
 namespace py = pybind11;
-PYBIND11_MODULE(lyric_module, m)
+PYBIND11_MODULE(lyric_module, lyric_cpp)
 {
-    m.def("simple_cpp_function", &simple_cpp_function);
-    py::class_<Calculator>(m, "Calculator")
+    lyric_cpp.def("simple_cpp_function", &simple_cpp_function);
+
+    py::class_<Calculator>(lyric_cpp, "Calculator")
     .def(py::init<>())  // Constructor
     .def("addnum", &Calculator::addnum, "A function that adds two numbers")
     .def("multnum", &Calculator::multnum, "A function that multiplies two numbers");

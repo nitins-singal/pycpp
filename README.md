@@ -23,14 +23,14 @@ cmake --build cpp/build -j
 # mkdir -p mylyric/lib/
 # cp cpp/build/lyric_module.* mylyric/lib/
 
-### In vscode for ddebugging with debugpy use this
+### In vscode for ddebugging with debugpy use this if you get warnings on frozen_modules
 python -Xfrozen_modules=off mylyric/script.py
 
 
 ### Building Dockerfile 
 docker build -t lyric_py_cpp:1.0 -f Dockerfile .
 ### Running the container
-docker run -v ./:/app/src  --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
+docker run -v ./:/app/src -v ./.vscode:/app/.vscode --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
 
 ### Building the project inside container.
 cd src; ./build_cpp.sh

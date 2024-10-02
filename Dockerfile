@@ -10,7 +10,7 @@ RUN apt-get update && \
 	
 
 COPY ./requirements.txt requirements.txt
-COPY ./.vscode/launch.json /app/.vscode/
+#COPY ./.vscode/launch.json /app/.vscode/
 # Use mount eventually for local env
 # COPY src/ src/
 
@@ -30,10 +30,8 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 # Expose a few ports.
 # EXPOSE 8999 8888
 
-# AVOID: if you want to copy source from git repo to container then use this. But best to AVOID this
-# docker run -it lyric_py_cpp:1.0 bash
 # BEST PRACTICE: Mount the source from repo and use. Some of the arguments are needed to enable C++ debuging inside container
-# docker run -v ./:/app/src --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
+# docker run -v ./:/app/src -v ./.vscode:/app/.vscode --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
 
 # Issue the following command inside container to build it.
 ## cd src; ./build_script.sh 

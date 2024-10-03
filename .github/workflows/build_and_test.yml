@@ -1,0 +1,41 @@
+name: PYAPP Build Pipeline
+
+on:
+  push:
+    branches:
+      - "**"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.ref_name != 'main' && github.ref_name || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.10-slim
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      options: --cpus 1
+
+    steps:
+      - name: Checkout ${{ github.repository }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: |
+          python3.10 -m venv venv_py
+          . venv_py/bin/activate
+        shell: bash
+
+

@@ -3,7 +3,7 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Need g++ for pip install of JPype in requirements file
+# Enable C++ builds
 RUN apt-get update && \
     apt-get -y install g++ cmake vim gdb && \
     rm -rf /var/lib/apt/lists/*
@@ -15,6 +15,13 @@ COPY ./requirements.txt requirements.txt
 # COPY src/ src/
 
 RUN pip3 install -r requirements.txt --no-cache-dir
+
+# BEST PRACTICE: Mount the source from repo and use. 
+# Some of the arguments are needed to enable C++ debuging inside container
+# docker run -v ./:/app/src -v ./.vscode:/app/.vscode --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
+
+# Issue the following command inside container to build it and install it.
+## cd src; ./build_script.sh ; pip install -e .
 
 #WORKDIR /app/src
 #RUN rm -rf build
@@ -29,10 +36,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 
 # Expose a few ports.
 # EXPOSE 8999 8888
-
-# BEST PRACTICE: Mount the source from repo and use. Some of the arguments are needed to enable C++ debuging inside container
-# docker run -v ./:/app/src -v ./.vscode:/app/.vscode --cap-add=SYS_PTRACE --security-opt seccomp:unconfined -it lyric_py_cpp:1.0 bash
-
-# Issue the following command inside container to build it.
-## cd src; ./build_script.sh 
 

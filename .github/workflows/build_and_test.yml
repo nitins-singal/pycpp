@@ -65,6 +65,7 @@ jobs:
 
       - name: Run tests
         run: |
+          . venvlyric/bin/activate
           pytest tests/units --cov=mylyric --cov-report=
           pytest tests/integration/ --cov=mylyric --cov-report=
           coverage report -m

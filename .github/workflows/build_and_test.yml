@@ -72,14 +72,10 @@ jobs:
         shell: bash
 
 
-      - name: Build coverage file
+      - name: Run All Tests
         run: |
           . venvlyric/bin/activate
-          pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=mylyric tests/ | tee pytest-coverage.txt
+          pytest tests/units -vv --color=yes --cov-report xml:coverage.xml --cov=mylyric -n3
+          coverage report -m
 
 
-      - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@main
-        with:
-          pytest-coverage-path: ./pytest-coverage.txt
-          junitxml-path: ./pytest.xml

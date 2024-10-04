@@ -53,11 +53,8 @@ jobs:
           GCC_VERSION: 6
         run: |
           . venvlyric/bin/activate
-          export CC=gcc-${GCC_VERSION}
-          export CXX=g++-${GCC_VERSION}
           rm -rf cpp/build
           cmake -S cpp -B cpp/build -D CMAKE_BUILD_TYPE=Debug
-          cmake --build . --target install -- -j$(nproc)
           cmake --build cpp/build -j
           mkdir -p mylyric/lib/
           cp cpp/build/lyric_module.* mylyric/lib/

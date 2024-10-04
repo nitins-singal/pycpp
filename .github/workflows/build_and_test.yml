@@ -15,6 +15,7 @@ permissions:
   pages: write
   id-token: write
 
+
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
@@ -27,6 +28,10 @@ jobs:
       options: --cpus 1
 
     steps:
+
+      - name: Install new Git
+        uses: ../github/actions/setup-git@build_pipeline
+
       - name: Checkout ${{ github.repository }}
         uses: actions/checkout@v3
         with:
@@ -34,8 +39,26 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3.10 -m venv venv_py
-          . venv_py/bin/activate
+          python3.10 -m venv venvlyric
+          . venvlyric/bin/activate
+          python3.10 -m pip install --use-deprecated=legacy-resolver --force-reinstall -r requirements.txt
+          python3.10 -m pip freeze
+        shell: bash
+
+      - name: Build binaries
+        env:
+          GCC_VERSION: 6
+          VIRTUAL_ENV: /tmp/nostromo_venv
+        run: |
+          . venvlyric/bin/activate
+          export CC=gcc-${GCC_VERSION}
+          export CXX=g++-${GCC_VERSION}
+          rm -rf cpp/build
+          cmake -S cpp -B cpp/build -D CMAKE_BUILD_TYPE=Debug
+          cmake --build . --target install -- -j$(nproc)
+          cmake --build cpp/build -j
+          mkdir -p mylyric/lib/
+          cp cpp/build/lyric_module.* mylyric/lib/
         shell: bash
 
 

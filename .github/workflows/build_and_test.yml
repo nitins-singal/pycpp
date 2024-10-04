@@ -41,10 +41,16 @@ jobs:
           python3.10 -m pip freeze
         shell: bash
 
+      - name: Install make and g++
+        run: |
+          apt-get update && \
+          apt-get -y install g++ cmake  && \
+          rm -rf /var/lib/apt/lists/*
+        shell: bash
+
       - name: Build binaries
         env:
           GCC_VERSION: 6
-          VIRTUAL_ENV: /tmp/nostromo_venv
         run: |
           . venvlyric/bin/activate
           export CC=gcc-${GCC_VERSION}

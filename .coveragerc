@@ -1,0 +1,7 @@
+[run]
+source = mylyric
+
+[report]
+omit =
+    tests/*
+skip_empty = True

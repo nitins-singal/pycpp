@@ -1,4 +1,4 @@
-name: PYAPP Build Pipeline
+name: PYCPP Build Pipeline
 
 on:
   push:
@@ -28,12 +28,8 @@ jobs:
       options: --cpus 1
 
     steps:
-
-      - name: Install new Git
-        uses: ../github/actions/setup-git@build_pipeline
-
       - name: Checkout ${{ github.repository }}
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 

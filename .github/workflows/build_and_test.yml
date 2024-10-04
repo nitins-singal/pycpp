@@ -25,7 +25,7 @@ jobs:
         NODE_ENV: development
       ports:
         - 80
-      options: --cpus 1
+      options: --cpus 2
 
     steps:
       - name: Checkout ${{ github.repository }}
@@ -58,6 +58,10 @@ jobs:
           cmake --build cpp/build -j
           mkdir -p mylyric/lib/
           cp cpp/build/lyric_module.* mylyric/lib/
+          python install .
+          python mylyric/script.py
+          pytest tests/
         shell: bash
+
 
 

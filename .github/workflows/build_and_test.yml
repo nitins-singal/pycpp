@@ -75,7 +75,7 @@ jobs:
       - name: Run All Tests
         run: |
           . venvlyric/bin/activate
-          pytest tests/units -vv --color=yes --cov-report xml:coverage.xml --cov=mylyric -n3
+          pytest tests/units -vv --color=yes --cov-report xml:coverage.xml --cov=mylyric
           coverage report -m
 
 

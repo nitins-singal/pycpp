@@ -1,6 +1,7 @@
 pybind11==2.11.1
-debugpy
+debugpy==1.8.6
 setuptools
+pandas==2.2.3
 # The following should actually go to test requirements
-pytest
-pytest-cov
+pytest==8.3.3
+pytest-cov==5.0.0

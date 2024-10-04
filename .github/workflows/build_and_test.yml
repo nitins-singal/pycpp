@@ -48,7 +48,7 @@ jobs:
           rm -rf /var/lib/apt/lists/*
         shell: bash
 
-      - name: Build binaries
+      - name: Build binaries and Invoke a sample script
         env:
           GCC_VERSION: 6
         run: |
@@ -60,8 +60,12 @@ jobs:
           cp cpp/build/lyric_module.* mylyric/lib/
           pip install .
           python mylyric/script.py
-          pytest tests/
         shell: bash
 
 
-
+      - name: Run tests
+        run: |
+          pytest tests/units --cov=mylyric --cov-report=
+          pytest tests/integration/ --cov=mylyric --cov-report=
+          coverage report -m
+        shell: bash

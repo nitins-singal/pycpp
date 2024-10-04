@@ -1,2 +1,2 @@
-def calculate():
+def sample_function():
     return 8

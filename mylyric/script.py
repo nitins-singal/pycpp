@@ -22,6 +22,7 @@ def calculate():
     # Call the multiply method
     result_multiply = calc.multnum(5, 3)
     print("Multiplication Result:", result_multiply)
+    return result_multiply
 
 
 if __name__ == "__main__":

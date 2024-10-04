@@ -25,7 +25,7 @@ jobs:
         NODE_ENV: development
       ports:
         - 80
-      options: --cpus 8
+      options: --cpus 1
 
     steps:
       - name: Checkout ${{ github.repository }}

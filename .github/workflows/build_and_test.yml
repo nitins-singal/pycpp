@@ -63,23 +63,14 @@ jobs:
         shell: bash
 
 
-      - name: Run tests
+
+      - name: Run Tests and Generate Coverage Report across All Tests
         run: |
           . venvlyric/bin/activate
-          pytest tests/units --cov=mylyric --cov-report= 
-          pytest tests/integration/ --cov=mylyric --cov-report=
-          coverage report -m
+          coverage run --source mylyric -m pytest -vv --color=yes tests/units tests/integration 
+          coverage report
         shell: bash
 
-
-      - name: Run All Tests
-        run: |
-          . venvlyric/bin/activate
-          pytest tests/units -vv --color=yes --cov-report xml:coverage.xml --cov=mylyric
-          coverage report -m
-          coverage run -m pytest  tests/units
-          coverage report -m
-          coverage html
 
 
 

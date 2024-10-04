@@ -25,5 +25,13 @@ def calculate():
     return result_multiply
 
 
+def unconvered_function():
+    """
+        This function is not covered by any tests.
+    """
+    a = 10
+    b = 20
+    return a * b
+
 if __name__ == "__main__":
     calculate()

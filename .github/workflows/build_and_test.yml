@@ -25,7 +25,7 @@ jobs:
         NODE_ENV: development
       ports:
         - 80
-      options: --cpus 2
+      options: --cpus 8
 
     steps:
       - name: Checkout ${{ github.repository }}
@@ -74,6 +74,7 @@ jobs:
 
       - name: Build coverage file
         run: |
+          . venvlyric/bin/activate
           pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app tests/ | tee pytest-coverage.txt
 
 

@@ -40,3 +40,10 @@ pip install -e .
 
 #### Running inside container
 python mylyric/script.py
+
+#### Running tests with coverage:
+
+Escaping tests from coverage: pragma: no cover
+def get_something():  # pragma: no cover
+This would just count one line that is not covered
+

@@ -33,5 +33,16 @@ def unconvered_function():
     b = 20
     return a * b
 
+
+def unconvered_unreported_function(): # pragma: no cover
+    """
+        This function is not covered by any tests.
+        But is also not measured for coverage except for first line
+    """
+    a = 10
+    b = 20
+    return a * b
+
 if __name__ == "__main__":
     calculate()
+

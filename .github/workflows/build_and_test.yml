@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   container-test-job:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: python:3.10-slim
       env:
@@ -67,7 +67,7 @@ jobs:
       - name: Run Tests and Generate Coverage Report across All Tests
         run: |
           . venvlyric/bin/activate
-          coverage run --source mylyric -m pytest -vv --color=yes tests/units tests/integration 
+          coverage run --source mylyric --skip-empty True -m pytest -vv --color=yes tests/units tests/integration 
           coverage report
         shell: bash
 
